@@ -7,7 +7,7 @@ const runServer = async(app, mongo_con, port)=>{
             console.log(`Listening on PORT: ${port}`);
         });
     } catch (error) {
-        console.log(`error: ${error.message}`)
+        console.log(`error: ${error.message}`);
     }
 }
 export default runServer;

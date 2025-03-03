@@ -7,7 +7,7 @@ class CustomError extends Error{
 }
 
 export const generateCustomError = (status, message)=>{
-    return new CustomError(status,error);
+    return new CustomError(status, message);
 }
 
 export const errorHandler = (err, req, res, next)=>{

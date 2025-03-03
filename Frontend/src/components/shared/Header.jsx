@@ -4,12 +4,21 @@ import Container from 'react-bootstrap/Container'
 import NavBar from 'react-bootstrap/Navbar'
 import { LinkContainer } from 'react-router-bootstrap'
 import SearchBox from './SearchBox'
+import {Link} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const Header = () => {
+    const navigate = useNavigate();
   return (
     <header>
         <NavBar bg='dark' varient='dark'>
             <Container>
+                {/* TODO: maybe I will implement proper logic (for going back)*/}
+                <Link onClick={() => {navigate(-1)}}>
+                    {location.pathname !== "/" && (
+                        <i className='fas fa-arrow-left text-white align-arrow-right'>Back</i>
+                    )}
+                </Link>
                 <LinkContainer to='/'>
                     <NavBar.Brand>
                         <img 

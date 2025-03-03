@@ -5,9 +5,9 @@ import { generateCustomError } from "../middleware/errorHandler";
 
 export const seedData = async (req, res, next)=>{
     try {
-        await Promise.all([Product.deleteMany({}), User.deleteMany({})]);
-        await Promise.all([Product.insertMany(data.products), User.insertMany(data.users)]);
-        res.send("Products were added successfully!");
+        await Promise.allSettled([Product.deleteMany({}), User.deleteMany({})]);
+        await Promise.allSettled([Product.insertMany(data.products), User.insertMany(data.users)]);
+        res.send("Products and users were added successfully!");
     } catch (error) {
         console.log(error);
         next(generateCustomError(500, 'Failed to seed'));
