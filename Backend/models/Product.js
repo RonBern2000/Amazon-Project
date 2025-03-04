@@ -1,4 +1,5 @@
 import {Schema, model} from "mongoose";
+
 const productSchema = new Schema(
   {
     title: { type: String, required: true, unique: true },
@@ -16,5 +17,6 @@ const productSchema = new Schema(
   },
   { timestamps: true }
 );
+
 const Product = model("Product", productSchema);
 export default Product;

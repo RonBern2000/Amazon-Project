@@ -7,21 +7,25 @@ export const useRequest = (url, options = {}) => {
     const [data, setData] = useState(null);
     const optionsRef = useRef(options);
 
-    useEffect(()=>{
-        const fetchData = async()=>{
+    useEffect(() => {
+        const fetchData = async() => {
             setIsLoading(true);
-            setError('');
+            setError("");
 
             try {
                 const response = await axios(url, optionsRef.current);
                 setData(response.data);
             } catch (error) {
-                setError(error?.response?.data?.message || 'Something went wrong');
-            } finally {
+                console.log(error);
+                setError(error?.response?.data?.message || "Something went wrong");
+            }
+            finally {
                 setIsLoading(false);
             }
         }
+
         fetchData();
-    }, [url, optionsRef]);
-    return {isLoading, error, data}
+    }, [url,optionsRef])
+
+    return {isLoading, error, data}; 
 }

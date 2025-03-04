@@ -1,7 +1,6 @@
 import { createContext, useReducer } from "react";
-import propTypes from 'prop-types'
 import PropTypes from "prop-types";
-import storeReducer from "./reducers/storeReducer.js";
+import storeReducer from "./reducers/storeReducer";
 
 const Store = createContext();
 

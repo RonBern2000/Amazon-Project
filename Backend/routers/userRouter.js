@@ -5,4 +5,4 @@ const userRouter = Router();
 
 userRouter.post("/signup", signup);
 
-export default userRouter
+export default userRouter;

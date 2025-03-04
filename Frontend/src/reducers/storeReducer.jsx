@@ -8,4 +8,4 @@ const storeReducer = (state, {type, payload}) => {
             return state;
     }
 }
-export default storeReducer
+export default storeReducer;

@@ -5,4 +5,4 @@ const seedRouter = Router();
 
 seedRouter.get("/", seedData);
 
-export default seedRouter
+export default seedRouter;

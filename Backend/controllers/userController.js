@@ -35,5 +35,4 @@ export const signup = async(req, res , next)=>{
     } catch(error){ //TODO: check where is the error
         next(generateCustomError(400, error.message || "Ivalid Credentials. Please try again!"));
     }
-    
 }
