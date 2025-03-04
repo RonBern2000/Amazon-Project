@@ -2,10 +2,9 @@ import { generateCustomError } from "../middleware/errorHandler.js";
 import User from "../models/User.js";
 import bcrypt from 'bcrypt';
 import { generateToken } from "../utils/generateToken.js";
+import { userSchema } from "../DTO/userSchema.js";
 
 export const signup = async(req, res , next)=>{
-    const {name, email, password} = req.body; // TODO: senitation(סניטציה) to check it exists, with ZOD/vinejs library
-
     // const newUser = new User({
     //     name,
     //     email,
@@ -13,6 +12,12 @@ export const signup = async(req, res , next)=>{
     // });
 
     // const user = await newUser.save();
+    
+    const result =await userSchema.safeParseAsync(req.body);
+    if(!result.success){
+        throw new Error("Invalid credentials");
+    }
+    const {name, email, password} = result.data;
 
     try{
         const user = await User.create({
