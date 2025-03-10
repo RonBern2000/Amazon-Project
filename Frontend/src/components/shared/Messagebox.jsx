@@ -1,6 +1,6 @@
-import React from 'react'
-import { Alert } from 'react-bootstrap'
-import PropTypes from 'prop-types'
+import React from 'react';
+import { Alert } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 
 const Messagebox = ({children, variant}) => {
   return (
@@ -10,7 +10,7 @@ const Messagebox = ({children, variant}) => {
   )
 }
 
-export default Messagebox
+export default Messagebox;
 
 Messagebox.propTypes = {
     children: PropTypes.node,

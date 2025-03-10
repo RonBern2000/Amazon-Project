@@ -4,17 +4,29 @@ import HomePage from "./pages/HomePage";
 import Footer from "./components/shared/Footer";
 import Header from "./components/shared/Header";
 import SignupPage from "./pages/SignupPage";
+import { ToastContainer } from "react-toastify";
+import SigninPage from "./pages/SigninPage";
+import ProductPage from "./pages/ProductPage"
+import CartPage from "./pages/CartPage";
+import ShippingPage from "./pages/ShippingPage";
+import PaymentPage from "./pages/PaymentPage";
 
 function App() {
   return (
     <BrowserRouter>
       <div className="d-flex flex-column side-allPage">
+        <ToastContainer position="bottom-center" limit={1}/>
         <Header/>
         <main>
           <Container className="mt-3">
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/signup" element={<SignupPage/>}/>
+              <Route path="/signin" element={<SigninPage/>}/>
+              <Route path="/product/:token" element={<ProductPage/>}/>
+              <Route path="/cart" element={<CartPage/>}/>
+              <Route path="/shipping" element={<ShippingPage/>}/>
+              <Route path="/payment" element={<PaymentPage/>}/>
             </Routes>
           </Container>
         </main>

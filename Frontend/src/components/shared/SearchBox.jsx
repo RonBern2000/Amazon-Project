@@ -1,6 +1,6 @@
-import React from 'react'
-import { Button, FormControl, InputGroup } from 'react-bootstrap'
-import Form from 'react-bootstrap/Form'
+import React from 'react';
+import { Button, FormControl, InputGroup } from 'react-bootstrap';
+import Form from 'react-bootstrap/Form';
 
 const SearchBox = () => {
   return (
@@ -15,4 +15,4 @@ const SearchBox = () => {
   )
 }
 
-export default SearchBox
+export default SearchBox;

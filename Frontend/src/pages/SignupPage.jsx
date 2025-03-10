@@ -7,6 +7,9 @@ import Title from "../components/shared/Title";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { Store } from "../store";
+import { toast } from "react-toastify";
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 const SignupPage = () => {
   const [name, setName] = useState("");
@@ -17,6 +20,11 @@ const SignupPage = () => {
   const navigate = useNavigate();
 
   const { state, dispatch } = useContext(Store);
+  const {userInfo} = state;
+
+  const {search} = useLocation();
+  const redirectInURL = new URLSearchParams(search).get('redirect');
+  const redirect = redirectInURL ? redirectInURL : '/';
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -29,12 +37,18 @@ const SignupPage = () => {
 
       dispatch({ type: USER_SIGNIN, payload: data });
       localStorage.setItem("userInfo", JSON.stringify(data));
-      navigate("/");
+      navigate(redirect);
     } catch (error) {
-      //TODO: TOAST
-      console.log(error?.response?.data?.message);
+      // TODO: an Error handler of some sort that will set an error message according to the status code and such
+      toast.error(error?.response?.data?.message ? error?.response?.data?.message : error.message);
     }
   };
+
+  useEffect(() => {
+    if(userInfo){
+        navigate(redirect);
+    }
+  },[]);
 
   const passwordDisplay =
     !password || !confirmPassword
@@ -104,7 +118,7 @@ const SignupPage = () => {
 
         <div className="mb-3">
             Already have an account? {" "}
-            <Link to={"/signin"}>Sign in here</Link>
+            <Link to={`/signin?redirect=${redirect}`}>Sign in here</Link>
         </div>
       </Form>
     </Container>

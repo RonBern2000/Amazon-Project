@@ -1,5 +1,5 @@
-import React from 'react'
-import { Spinner } from 'react-bootstrap'
+import React from 'react';
+import { Spinner } from 'react-bootstrap';
 
 const Loading = () => {
   return (
@@ -9,4 +9,4 @@ const Loading = () => {
   )
 }
 
-export default Loading
+export default Loading;

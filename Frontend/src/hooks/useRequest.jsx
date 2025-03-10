@@ -23,7 +23,6 @@ export const useRequest = (url, options = {}) => {
                 setIsLoading(false);
             }
         }
-
         fetchData();
     }, [url,optionsRef])
 
