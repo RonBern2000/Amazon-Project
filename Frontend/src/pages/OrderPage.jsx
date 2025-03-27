@@ -17,6 +17,7 @@ const OrderPage = () => {
   const params = useParams();
   const { id: orderId } = params;
   const navigate = useNavigate();
+
   const {
     isLoading,
     error,
@@ -26,10 +27,12 @@ const OrderPage = () => {
       authorization: `Bearer ${userInfo?.token}`,
     },
   });
+
   if (!userInfo) {
     navigate("/signin");
     return null;
   }
+
   return (
     <div>
       {isLoading ? (
@@ -150,7 +153,7 @@ const OrderPage = () => {
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
 export default OrderPage;

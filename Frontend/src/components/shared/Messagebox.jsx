@@ -1,11 +1,10 @@
-import React from 'react';
-import { Alert } from 'react-bootstrap';
+import Alert from 'react-bootstrap/Alert'
 import PropTypes from 'prop-types';
 
 const Messagebox = ({children, variant}) => {
   return (
-    <Alert variant={variant || 'info'}>
-        {children}
+    <Alert variant={variant || "info"}>
+      {children}
     </Alert>
   )
 }

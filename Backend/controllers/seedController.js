@@ -5,6 +5,10 @@ import { generateCustomError } from "../middleware/errorHandler.js";
 
 export const seedData = async(req, res,next) => {
     try {
+        // await Product.deleteMany({});
+        // await User.deleteMany({});
+        // await Product.insertMany(data.products);
+        // await User.insertMany(data.users);
         await Promise.all([Product.deleteMany({}),User.deleteMany({})])
         await Promise.all([Product.insertMany(data.products), User.insertMany(data.users)])
         res.send("Products and users were added successfully!")

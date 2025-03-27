@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { USER_SIGNIN } from "../actions";
 import Container from "react-bootstrap/Container";
@@ -8,8 +8,6 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { Store } from "../store";
 import { toast } from "react-toastify";
-import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
 
 const SignupPage = () => {
   const [name, setName] = useState("");
@@ -20,16 +18,15 @@ const SignupPage = () => {
   const navigate = useNavigate();
 
   const { state, dispatch } = useContext(Store);
-  const {userInfo} = state;
 
   const {search} = useLocation();
-  const redirectInURL = new URLSearchParams(search).get('redirect');
-  const redirect = redirectInURL ? redirectInURL : '/';
+    const redirectInURL = new URLSearchParams(search).get('redirect');
+    const redirect = redirectInURL ? redirectInURL : '/';
 
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post("/api/v1/users/signup", {
+      const { data } = await axios.post("/api/v1/u/signup", {
         name,
         email,
         password,
@@ -39,16 +36,11 @@ const SignupPage = () => {
       localStorage.setItem("userInfo", JSON.stringify(data));
       navigate(redirect);
     } catch (error) {
-      // TODO: an Error handler of some sort that will set an error message according to the status code and such
-      toast.error(error?.response?.data?.message ? error?.response?.data?.message : error.message);
+      //TODO: TOAST
+      toast.error(error?.response?.data?.message);
+      //console.log(error?.response?.data?.message);
     }
   };
-
-  useEffect(() => {
-    if(userInfo){
-        navigate(redirect);
-    }
-  },[]);
 
   const passwordDisplay =
     !password || !confirmPassword

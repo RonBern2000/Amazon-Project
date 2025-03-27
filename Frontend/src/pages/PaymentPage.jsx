@@ -9,7 +9,7 @@ import Button from "react-bootstrap/Button";
 
 const PaymentPage = () => {
   const navigate = useNavigate();
-  const { state, dispatch: dispatch } = useContext(Store);
+  const { state, dispatch } = useContext(Store);
   const {
     cart: { cartItems, shippingAddress, paymentMethod },
     userInfo,
@@ -32,6 +32,7 @@ const PaymentPage = () => {
     if (!userInfo) {
       navigate("/signin?redirect=/payment");
     }
+
     if (!shippingAddress) {
       navigate("/shipping");
     }

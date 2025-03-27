@@ -1,13 +1,12 @@
-import {Router} from 'express'
-import { getProducts, getProductById, getProductByToken, getProductCategories, getProductsByQuery } from '../controllers/productController.js';
+import { Router } from "express";
+import { getProducts, getProductById, getProductByToken,getProductCategories,getProductsByQuery } from "../controllers/productController.js";
 
-const productsRouter = Router();
+const productRouter = Router();
 
-productsRouter.get("/", getProducts);
-productsRouter.get("/categories", getProductCategories);
-productsRouter.get("/token/:token", getProductByToken);
-productsRouter.get("/search", getProductsByQuery);
-productsRouter.get("/:id", getProductById); // may switch the route to "/item/:id"
+productRouter.get("/", getProducts);
+productRouter.get("/categories", getProductCategories);
+productRouter.get("/token/:token", getProductByToken);
+productRouter.get("/search", getProductsByQuery);
+productRouter.get("/:id", getProductById);
 
-
-export default productsRouter;
+export default productRouter;

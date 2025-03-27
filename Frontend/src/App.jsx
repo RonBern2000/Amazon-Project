@@ -4,15 +4,16 @@ import HomePage from "./pages/HomePage";
 import Footer from "./components/shared/Footer";
 import Header from "./components/shared/Header";
 import SignupPage from "./pages/SignupPage";
-import { ToastContainer } from "react-toastify";
+import {ToastContainer} from 'react-toastify';
 import SigninPage from "./pages/SigninPage";
-import ProductPage from "./pages/ProductPage"
+import ProductPage from "./pages/ProductPage";
 import CartPage from "./pages/CartPage";
 import ShippingPage from "./pages/ShippingPage";
 import PaymentPage from "./pages/PaymentPage";
 import SubmitOrderPage from "./pages/SubmitOrderPage";
 import OrderPage from "./pages/OrderPage";
 import SearchPage from "./pages/SearchPage";
+
 
 function App() {
   return (

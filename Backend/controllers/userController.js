@@ -1,29 +1,22 @@
-import { generateCustomError } from "../middleware/errorHandler.js";
-import User from "../models/User.js";
 import bcrypt from 'bcrypt';
-import { generateToken } from "../utils/generateToken.js";
-import { userSchema, loginUserSchema } from "../DTO/userSchema.js";
+import User from '../models/User.js';
+import { generateCustomError } from '../middleware/errorHandler.js';
+import { userSchema } from "../DTO/userSchema.js";
+import { generateToken } from '../utils.js';
+import {loginUserSchema} from '../DTO/loginUserSchema.js'
 
-export const signup = async(req, res , next)=>{
-    // const newUser = new User({
-    //     name,
-    //     email,
-    //     password: password && bcrypt.hashSync(password, 10),
-    // });
+export const signup = async(req,res,next) => {
 
-    // const user = await newUser.save();
-    
     const result =await userSchema.safeParseAsync(req.body);
     if(!result.success){
         return next(generateCustomError(404, "Invalid Credentials. Please try again!"))
     }
     const {name, email, password} = result.data;
-
-    try{
+    try {
         const user = await User.create({
             name,
             email,
-            password: password && bcrypt.hashSync(password, 10),
+            password: password && bcrypt.hashSync(password,10)
         });
 
         res.send({
@@ -31,22 +24,23 @@ export const signup = async(req, res , next)=>{
             name: user.name,
             email: user.email,
             token: generateToken(user)
-        });
-    } catch(error){ //TODO: check where is the error
-        next(generateCustomError(400, error.message || "Ivalid Credentials. Please try again!"));
+        })
+    } catch (error) {
+        next(generateCustomError(400, error.message || "Invalid Credentials. Please try again!"));
     }
 }
 
-export const signin = async(req, res, next) => {
-    const {email, password} = req.body;
-
-    // TODO: Validations here
+export const signin = async(req,res,next) => {
     const result = await loginUserSchema.safeParseAsync(req.body);
+     if(!result.success){
+        return next(generateCustomError(404, "Invalid Credentials. Please try again!"))
+    }
+    const {email, password} = result.data;
 
     try {
         const user = await User.findOne({email});
 
-        if(!user || !await bcrypt.compare(password, user.password)){
+        if(!user || !await bcrypt.compare(password, user.password)) {
             return next(generateCustomError(404, "Invalid Credentials. Please try again!"));
         }
 
@@ -55,8 +49,8 @@ export const signin = async(req, res, next) => {
             name: user.name,
             email: user.email,
             token: generateToken(user)
-        });
+        })
     } catch (error) {
-        return next(generateCustomError(400, error.message || "Ivalid Credentials. Please try again!"));
+        return next(generateCustomError(400, error.message || "Invalid Credentials. Please try again!"));
     }
 }
